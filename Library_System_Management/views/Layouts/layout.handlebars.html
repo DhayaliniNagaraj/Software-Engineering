@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+</head>
+<body>
+<div class="container">
+    <div class="header clearfix">
+        <h3 class="text-muted">Library Management System</h3>
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                {{#if user }}
+                    {{#if admin}}
+                        <li role="presentation"><a href="/users/addBook">Add Book</a></li>
+                        <li role="presentation"><a href="/users/availableBooks">Available Books</a></li>
+                        <li role="presentation"><a href="/users/processRequest">Process Book Requests</a></li>
+                        <li role="presentation"><a href="/users/allOrders">Order Details</a></li>
+                        <li role="presentation"><a href="/users/logout">Logout</a></li>
+                    {{/if}}
+                    {{#if student}}
+                        <li role="presentation"><a href="/users/availableBooks">Available Books</a></li>
+                        <li role="presentation"><a href="/users/alluserOrders">Orders Placed</a></li>
+                        <li role="presentation"><a href="/users/logout">Logout</a></li>
+                    {{/if}}
+                    {{#if teacher}}
+                        <li role="presentation"><a href="/users/availableBooks">Available Books</a></li>
+                        <li role="presentation"><a href="/users/processRequest">Process Book Requests</a></li>
+                        <li role="presentation"><a href="/users/teacherOrders">My Orders</a></li>
+                        <li role="presentation"><a href="/users/alluserOrders">Order Details</a></li>
+                        <li role="presentation"><a href="/users/logout">Logout</a></li>
+                    {{/if}}
+                {{else}}
+                    <li role="presentation"><a href="/users/login">Login</a></li>
+                    <li role="presentation"><a href="/users/Register">Register</a></li>
+                {{/if}}
+            </ul>
+        </nav>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            {{#if success_msg}}
+                <div class="alert  alert-success">{{success_msg}}</div>
+            {{/if}}
+            {{#if error_msg}}
+                <div class="alert  alert-danger">{{error_msg}}</div>
+            {{/if}}
+            {{#if error}}
+                <div class="alert  alert-danger">{{error}}</div>
+            {{/if}}
+            {{{body}}}
+        </div>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2017 Library Management System</p>
+    </footer>
+</div> <!-- /container -->
+</body>
+</html>
+

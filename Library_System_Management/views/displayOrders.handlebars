@@ -1,0 +1,68 @@
+{{#if process}}
+    <h2 class="page-header"> Process Request </h2>
+{{/if}}
+{{#if approved}}
+    <h2 class="page-header"> All Orders </h2>
+{{/if}}
+{{#if stu}}
+    <h2 class="page-header"> My Orders </h2>
+{{/if}}
+
+{{#if errors}}
+    {{#each errors}}
+        <div class="alert alert-danger"> {{msg}}</div>
+    {{/each}}
+{{/if}}
+
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            {{#if approved}}<th>Placed By</th>{{/if}}
+            {{#if process}}<th>Placed By</th>{{/if}}
+            <th>Book ID </th>
+            <th>Title </th>
+            <th>RequestDate</th>
+            <th>Status</th>
+            <th>Due Date </th>
+            {{#if approved}}
+                <th>Approved Date </th>
+                <th>Return Date</th>
+            {{/if}}
+            {{#if process}}
+                <th> Approve </th>
+            {{/if}}
+            {{#if stu}}<th>Return Book</th>{{/if}}
+        </tr>
+        </thead>
+        <tbody>
+        {{#each order}}
+            <tr>
+                {{#if ../approved}}<td>{{username}}</td>{{/if}}
+                {{#if ../process}}<td>{{username}}</td>{{/if}}
+                <td>{{bookid}}</td>
+                <td>{{title}}</td>
+                <td>{{RequestDate}}</td>
+                <td>{{Status}}</td>
+                <td>{{DueDate}}</td>
+                {{#if ../approved}}
+                    <td>{{ApprovalDate}}</td>
+                {{/if}}
+                {{#if ../process}}
+                    <form method="GET" id="my_form" action="/users/approveRequests">
+                        <td><input type="submit" value="Approve"  >
+                            <input type="hidden" value="{{_id}}" name="id" /></td>
+                    </form>
+                {{/if}}
+                {{#if ../stu}}
+                    <form method="GET" id="my_form" action="/users/returnBooks">
+                        <td><input type="submit" value="Return"  >
+                            <input type="hidden" value="{{_id}}" name="id" /></td>
+                    </form>
+                {{/if}}
+            </tr>
+
+        {{/each}}
+        </tbody>
+    </table>
+</div>

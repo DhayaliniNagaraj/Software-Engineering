@@ -1,0 +1,29 @@
+<h2 class="page-header"> Add Book </h2>
+{{#if errors}}
+    {{#each errors}}
+        <div class="alert alert-danger"> {{msg}}</div>
+    {{/each}}
+{{/if}}
+<form method="post" action ="/users/addBooktoRepo">
+    <div class="form-group">
+        <label>Boook Id</label>
+        <input type="number" class="form-control" placeholder = "id" name="id">
+    </div>
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" class="form-control" placeholder = "title" name="title">
+    </div>
+    <div class="form-group">
+        <label>Author</label>
+        <input type="text" class="form-control" placeholder = "author" name="author">
+    </div>
+    <!--div class="form-group">
+        <label>Number of Books</label>
+        <input type="number" class="form-control" placeholder = "Number Of Books to be added" name="id">
+    </div-->
+    <div class="form-group">
+        <label>Class</label>
+        <input type="Number" class="form-control" placeholder = "Course Year" name="class">
+    </div>
+    <button type = "submit" class = "btn btn=default"> Add Book </button>
+</form>

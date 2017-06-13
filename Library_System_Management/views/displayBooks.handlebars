@@ -1,0 +1,64 @@
+<h2 class="page-header"> All Books </h2>
+{{#if errors}}
+    {{#each errors}}
+        <div class="alert alert-danger"> {{msg}}</div>
+    {{/each}}
+{{/if}}
+
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+    <tr>
+        <th>Book ID </th>
+        <th>Title </th>
+        <th>Author</th>
+        <th>Class</th>
+        {{#if student}}<th>Request Book</th>{{/if}}
+        {{#if teacher}}<th>Request Book</th>{{/if}}
+    </tr>
+        </thead>
+        <tbody>
+{{#if student}}
+{{#each book}}
+    <form method="GET" id="my_form" action="/users/requestBook">
+            <td>{{Bookid}}</td>
+            <td>{{Title}}</td>
+            <td>{{Author}}</td>
+            <td>{{Class}}</td>
+            <td>
+                <input type="submit" value="Request"  >
+                <input type="hidden" value="{{Title}}" name="Title" />
+                <input type="hidden" value="{{Bookid}}" name="id" />
+            </td>
+        </tr>
+    </form>
+{{/each}}
+{{/if}}
+{{#if teacher}}
+    {{#each book}}
+        <form method="GET" id="my_form" action="/users/requestBook">
+            <td>{{Bookid}}</td>
+            <td>{{Title}}</td>
+            <td>{{Author}}</td>
+            <td>{{Class}}</td>
+            <td>
+                <input type="submit" value="Request"  >
+                <input type="hidden" value="{{Title}}" name="Title" />
+                <input type="hidden" value="{{Bookid}}" name="id" />
+            </td>
+            </tr>
+        </form>
+{{/each}}
+{{/if}}
+{{#if admin}}
+    {{#each book}}
+        <td>{{Bookid}}</td>
+        <td>{{Title}}</td>
+        <td>{{Author}}</td>
+        <td>{{Class}}</td>
+       </tr>
+    {{/each}}
+{{/if}}
+ </tbody>
+</table>
+</div>
